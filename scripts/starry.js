@@ -78,5 +78,3 @@ function setup() {
   }
   loop ();
 }
-
-setup();

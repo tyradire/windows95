@@ -1,10 +1,20 @@
 const background = document.querySelector('.page');
 const moon = document.querySelector('.moon');
+const themeSwitcher = document.getElementById('theme-switcher');
 
-function text(evt) {
-  evt.preventDefault();
+function text() {
   background.classList.toggle('page_background');
   moon.classList.toggle('sun');
+  deleteStars();
 }
 
-background.addEventListener('contextmenu', text);
+function deleteStars() {
+  if (!moon.classList.contains('sun')) {
+    arrStars = []
+  } else {
+    setup();
+  }
+
+}
+
+themeSwitcher.addEventListener('change', text);

@@ -21,14 +21,14 @@
 
 .page_background {
   background: rgb(113,125,150);
-  background: -moz-linear-gradient(0deg, rgba(113,125,150,1) 0%, rgb(8, 11, 26) 80%);
+  background: -moz-linear-gradient(0deg, rgba(113,125,150,1) 0%, rgba(8, 11, 26) 80%);
   background: -webkit-linear-gradient(0deg, rgba(113,125,150,1) 0%, rgba(8, 11, 26) 80%);
   background: linear-gradient(0deg, rgba(113,125,150,1) 0%, rgba(8, 11, 26) 80%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#717d96",endColorstr="#1c2450",GradientType=1);
 }
 
 .content {
-  height: calc(100vh - 53px);
+  height: calc(100vh - 51px);
 }
 
 .menu {
@@ -187,11 +187,12 @@
   top: 50px;
   left: 400px;
   background-image: url('../assets/sun.png');
-  background-position: center;
+  background-position: center bottom;
   background-size: contain;
   width: 180px;
   height: 180px;
-  animation: rotation 90s linear infinite;
+  /* animation: rotation 90s linear infinite; */
+  animation: animatedBackground 60s linear reverse infinite;
   -webkit-box-shadow: 0px 0px 40px 2px #ffe056; 
   box-shadow: 0px 0px 40px 2px #ffe056;
   border-radius: 50%;
@@ -224,8 +225,82 @@
 
 /* Переключатель */
 
-.theme-handler__button {
-  position: static;
-  top: 100px;
-  right: 100px;
+.theme-switcher {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(137, 237, 255);
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 4px;
+  bottom: 4px;
+  background-color: rgb(244, 255, 94);
+  -webkit-transition: .2s;
+  transition: .2;
+}
+
+.slider.round {
+  border-radius: 13px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+input:checked + .slider:before {
+  background-color: rgb(252, 255, 209);
+}
+
+input:checked + .slider {
+  background-color: #292e49;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(18px);
+  -ms-transform: translateX(18px);
+  transform: translateX(18px);
+}
+
+/* Moving sunmoon  */
+
+@keyframes animatedBackground 
+{
+  from { 
+    background-position:10px; 
+  } to { 
+    background-position: 1000px;
+  }
 }
